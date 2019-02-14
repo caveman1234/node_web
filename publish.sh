@@ -11,12 +11,13 @@ rm -rf ${tarName}
 ssh -p 22 root@${targetServer} << eeooff
 # ssh -p 22 root@${targetServer} > /dev/null 2>&1 << eeooff
 # ssh -p 22 root@${targetServer} 2>&1 << EOF
-cd /root/node_web
-ls | grep -v dist.tar.gz | xargs rm -rf
+cd ${testServerDir}
+ls | grep -v dist.tar.gz | grep -v node_modules | xargs rm -rf
 tar -xzf dist.tar.gz
 rm -rf dist.tar.gz
-npm install
-npm start
-EOF
-echo "前端代码部署测试完毕"
+# npm install
+npm restart
+# npm start
+eeooff
+echo "代码部署完毕"
 

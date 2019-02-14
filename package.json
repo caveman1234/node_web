@@ -2,8 +2,8 @@
   "scripts": {
     "server-dev": "node index.js development",
     "server-pro": "node index.js production",
-    "start": "forever start index.js",
-    "publish": "forever restart index.js"
+    "restart": "forever restart index.js",
+    "start": "forever start index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

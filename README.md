@@ -1,6 +1,6 @@
 #### node-web
 ##### 启动
-forever restart index.js production
+forever restart index.js
 ##### 发布
 sh publish
 ##### 地址
