@@ -19,3 +19,4 @@ npm install
 npm start
 EOF
 echo "前端代码部署测试完毕"
+

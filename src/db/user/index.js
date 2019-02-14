@@ -17,6 +17,21 @@ var dbAccess = {
   },
   async createUser(data){
     return User.create(data);
+  },
+  async findUserCountByName(username){
+    var {count} = await User.findAndCount({
+      where:{
+        username:username
+      }
+    });
+    return count;
+  },
+  async findUser(params){
+    var {username,password} = params;
+    var users = await User.findAll({
+      where:{username,password}
+    });
+    return users;
   }
 };
 

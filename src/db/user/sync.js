@@ -4,5 +4,5 @@ var { User } = require("./user.define");
 
 
 
-User.sync({force:false});
-// User.sync({alter:true});
+// User.sync({force:false});
+User.sync({alter:true});

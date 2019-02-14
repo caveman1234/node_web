@@ -8,11 +8,13 @@ var multipart = require("connect-multiparty");
 var session = require('express-session');
 
 var { wrapRes } = require("../utils/index");
-
+var projectName = "/node-web";
 
 var sessionMiddleWare = function(req,res,next) {
+  // next();
+  // return;
   var userInfo = req.session.userInfo;
-  var notValidateSessionPath = ["/test/testGetLogin","/test/testGetLogout"];
+  var notValidateSessionPath = ["/node-web/user/create","/node-web/user/logout","/node-web/user/login"];
   if(userInfo){
     next();
   }else{
@@ -26,14 +28,13 @@ var sessionMiddleWare = function(req,res,next) {
 
 var handleMiddleWare = function(app) {
   app.use("/",express.static(path.resolve(__dirname,"../../webapp")));
-  app.use(session({ secret: 'dfsdfsdfs', cookie: { maxAge: 1000 * 60 * 10 }}));
-  // app.use(session({ secret: 'dfsdfsdfs', cookie: { maxAge: 1000 }}));
+  app.use(session({ secret: 'dfsdfsdfs', cookie: { maxAge: 1000 * 60 * 60 * 3 }}));
   app.use(sessionMiddleWare);
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded());
   app.use(multipart());
-  app.use("/user",userRouter);
-  app.use("/test",testRouter);
+  app.use(projectName,userRouter);
+  app.use(projectName,testRouter);
 }
 
 module.exports = handleMiddleWare;

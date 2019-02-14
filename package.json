@@ -2,7 +2,7 @@
   "scripts": {
     "server-dev": "node index.js development",
     "server-pro": "node index.js production",
-    "start":"forever start index.js",
+    "start": "forever start index.js",
     "publish": "forever restart index.js"
   },
   "dependencies": {
@@ -14,5 +14,8 @@
     "sequelize": "^4.42.0",
     "shelljs": "^0.8.3",
     "ssh2": "^0.8.2"
+  },
+  "devDependencies": {
+    "forever": "^0.15.3"
   }
 }

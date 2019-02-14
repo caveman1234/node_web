@@ -11,16 +11,16 @@ router.use(function timeLog (req, res, next) {
   
   next()
 })
-router.post("/testPostJson",function (req, res) {
+router.post("/node-web/testPostJson",function (req, res) {
   var body = req.body;
   
   res.json(wrapRes(1,"成功",body));
 })
-router.post("/testUrlEncoding",function(req,res){
+router.post("/node-web/testUrlEncoding",function(req,res){
   var body = req.body;
   res.json(wrapRes(1,"成功",body));
 })
-router.post("/testFormData",function(req,res){
+router.post("/node-web/testFormData",function(req,res){
   var body = req.body;
   res.json(wrapRes(1,"成功",body));
   Object.keys(req.files).forEach(function(key) {
@@ -33,7 +33,7 @@ router.post("/testFormData",function(req,res){
     rs.pipe(ws);
   });
 })
-router.get("/testGet",async function(req,res){
+router.get("/node-web/testGet",async function(req,res){
   var page = parseInt(req.query.page) || 0;
   var size = parseInt(req.query.size) || 10;
   var params = {limit:size,offset:size * page};
@@ -42,13 +42,13 @@ router.get("/testGet",async function(req,res){
   // res.cookie('rememberme', '1', { maxAge: 1000, httpOnly: true });
   res.json(wrapRes(1,"成功",users,pageable));
 })
-router.get("/testGetLogin",function(req,res){
+router.get("/node-web/testGetLogin",function(req,res){
   req.session.userInfo = {
     username:req.query.username
   };
   res.json(wrapRes(1,"成功",req.query));
 })
-router.get("/testGetLogout",function(req,res){
+router.get("/node-web/testGetLogout",function(req,res){
   req.session.userInfo = null;
   res.json(wrapRes(1,"退出成功",req.query));
 })
