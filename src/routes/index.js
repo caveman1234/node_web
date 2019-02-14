@@ -21,14 +21,14 @@ var sessionMiddleWare = function(req,res,next) {
     if(notValidateSessionPath.includes(req.path)){
       next();
     }else{
-      res.json(wrapRes(10,"未登录",{}));
+      res.json(wrapRes(10,"未登录",null));
     }
   }
 }
 
 var handleMiddleWare = function(app) {
   app.use("/",express.static(path.resolve(__dirname,"../../webapp")));
-  app.use(session({ secret: 'dfsdfsdfs', cookie: { maxAge: 1000 * 60 * 60 * 3 }}));
+  app.use(session({ secret: 'dfsdfsdfs', cookie: { maxAge: 1000 * 60 * 60 * 2 }}));
   app.use(sessionMiddleWare);
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded());

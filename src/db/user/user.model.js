@@ -3,15 +3,11 @@ var BaseModel = require("../base/model");
 var Model = {
   username: {
     type: Sequelize.STRING,
-    validate:{
-      notEmpty:{
-        args:true,
-        msg:"用户名不能为空"
-      }
-    }
+    defaultValue: null
   },
   password: {
     type:Sequelize.STRING,
+    defaultValue: null,
     validate:{
       is: {
         args:/^[a-z]\w{5,20}/i,
@@ -24,9 +20,19 @@ var Model = {
     defaultValue:"2"
   }
 };
+var validate = {
+  validate:{
+    notNullOrEmpty() {
+      if(!this.username) throw new Error('用户名不能为空');
+      if(!this.password) throw new Error('密码不能为空');
+    }
+  }
+}
 
-
-module.exports = {
-  ...Model,
-  ...BaseModel
-};
+module.exports = [
+  {
+    ...Model,
+    ...BaseModel
+  },
+  validate
+];

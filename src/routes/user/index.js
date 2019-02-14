@@ -7,9 +7,9 @@ var router = express.Router();
 router.post('/user/create',async function(req, res) {
   try{
     var {username,password} = req.body;
-    if(!username || !password) throw new Error("用户名密码不能为空");
-    var count = await userDb.findUserCountByName(username);
-    if(count > 0) throw new Error("用户已存在");
+    // if(!username || !password) throw new Error("用户名密码不能为空");
+    // var count = await userDb.findUserCountByName(username);
+    // if(count > 0) throw new Error("用户已存在");
 
     var allUsers = await userDb.createUser({
       username:username,
