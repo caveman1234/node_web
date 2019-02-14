@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "server-dev": "node index.js development",
+    "server-pro": "node index.js production",
+    "start":"forever start index.js",
+    "publish": "forever restart index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-multiparty": "^2.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0",
+    "shelljs": "^0.8.3",
+    "ssh2": "^0.8.2"
+  }
+}
