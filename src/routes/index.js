@@ -11,8 +11,8 @@ var { wrapRes } = require("../utils/index");
 var projectName = "/node-web";
 
 var sessionMiddleWare = function(req,res,next) {
-  // next();
-  // return;
+  next();
+  return;
   var userInfo = req.session.userInfo;
   var notValidateSessionPath = ["/node-web/user/create","/node-web/user/logout","/node-web/user/login"];
   if(userInfo){

@@ -4,11 +4,6 @@ var userDb = require("../../../src/db/user/index");
 
 var router = express.Router();
 
-router.use(function timeLog (req, res, next) {
-  console.log('user ', Date.now())
-  next()
-})
-
 router.post('/user/create',async function(req, res) {
   try{
     var {username,password} = req.body;
@@ -22,11 +17,11 @@ router.post('/user/create',async function(req, res) {
     });
     res.json(wrapRes(1,"成功",allUsers));
   }catch(e){
-    res.json(wrapRes(2,e.message,{}));
+    res.json(wrapRes(2,e.message,null));
     return;
   }
   
-})
+});
 router.post("/user/login",async function(req,res){
   try{
     var {username,password} = req.body;
@@ -46,19 +41,44 @@ router.post("/user/login",async function(req,res){
     res.cookie('role', users[0].role, { maxAge: 1000 * 60 * 60 * 2, httpOnly: true });
     res.json(wrapRes(1,"成功",req.session.userInfo));
   }catch(e){
-    res.json(wrapRes(2,e.message,{}));
+    res.json(wrapRes(2,e.message,null));
     return;
   }
-})
+});
 router.get("/user/logout",async function(req,res){
   try{
     req.session.userInfo = null;
     res.clearCookie("username");
     res.clearCookie("userId");
     res.clearCookie("role");
-    res.json(wrapRes(1,"成功",{}));
+    res.json(wrapRes(1,"成功",null));
   }catch(e){
-    res.json(wrapRes(2,e.message,{}));
+    res.json(wrapRes(2,e.message,null));
+    return;
+  }
+});
+router.get("/user/resetPassword",async function(req,res){
+  try{
+    var id = req.query.userId;
+    if(!id) throw new Error("id不能为空");
+    var result = await userDb.resetPassword(id);
+    res.json(wrapRes(1,"成功",null));
+  }catch(e){
+    res.json(wrapRes(2,e.message,null));
+    return;
+  }
+});
+router.get("/user/list",async function(req,res){
+  try{
+    var page = parseInt(req.query.page) || 0;
+    var size = parseInt(req.query.size) || 10;
+    var params = {limit:size,offset:size * page};
+    var {users,count} = await userDb.findAllUser(params);
+    var totalPages = Math.ceil(count/size);
+    var pageable = {page,size,count,totalPages};
+    res.json(wrapRes(1,"成功",users,pageable));
+  }catch(e){
+    res.json(wrapRes(2,e.message,null));
     return;
   }
 });

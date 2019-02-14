@@ -9,13 +9,13 @@ var BaseModel = {
   updatedAt : {
     type:Sequelize.DATE,
     get(){
-      return this.getDataValue("updatedAt").getTime();
+      return (this.getDataValue("updatedAt") || new Date()).getTime();
     }
   },
   createdAt : {
     type:Sequelize.DATE,
     get(){
-      return this.getDataValue("createdAt").getTime();
+      return (this.getDataValue("createdAt") || new Date()).getTime();
     }
   }
 }
