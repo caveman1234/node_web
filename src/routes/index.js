@@ -1,13 +1,13 @@
 var express = require("express");
 var path = require("path");
-
-var userRouter = require("./user/index");
-var testRouter = require("./test/index");
 var bodyParser = require("body-parser");
 var multipart = require("connect-multiparty");
 var session = require('express-session');
-
 var { wrapRes } = require("../utils/index");
+var testRouter = require("./test/index");
+var userRouter = require("./user/index");
+var placeRouter = require("./place/index");
+
 var projectName = "/node-web";
 
 var sessionMiddleWare = function(req,res,next) {
@@ -35,6 +35,7 @@ var handleMiddleWare = function(app) {
   app.use(multipart());
   app.use(projectName,userRouter);
   app.use(projectName,testRouter);
+  app.use(projectName,placeRouter);
 }
 
 module.exports = handleMiddleWare;

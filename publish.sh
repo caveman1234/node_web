@@ -1,4 +1,3 @@
-
 #!/bin/bash
 tarName=dist.tar.gz
 testServerDir=/root/node_web

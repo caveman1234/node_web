@@ -17,7 +17,16 @@ var genPage = function(pageInfo = {page:0,size:2}) {
   return pageQueryParams;
 }
 
+var isEmpty = function(value){
+  if(value === undefined || value === null || value === ""){
+    return true;
+  }else{
+    return false;
+  }
+}
+
 module.exports={
   wrapRes,
-  genPage
+  genPage,
+  isEmpty
 }

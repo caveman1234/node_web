@@ -17,6 +17,10 @@ var BaseModel = {
     get(){
       return (this.getDataValue("createdAt") || new Date()).getTime();
     }
+  },
+  dr:{
+    type:Sequelize.ENUM(["0","1"]),
+    defaultValue:"1"
   }
 }
 
