@@ -1,3 +1,5 @@
+var path = require("path");
+var fs = require("fs");
 var setEnv = function() {
   var argv = process.argv.slice(2);
   process.env.NODE_ENV = argv[0] || "development";
@@ -25,8 +27,21 @@ var isEmpty = function(value){
   }
 }
 
+var generateCode = function(){
+  var curDate = new Date();
+  var year = curDate.getFullYear();
+  var month = curDate.getMonth() + 1;
+  var day = curDate.getDate();
+  var code = fs.readFileSync("./code");
+  code = parseInt(code);
+  code++;
+  fs.writeFileSync("./code",code);
+  return '' + year + month + day + code
+}
+
 module.exports={
   wrapRes,
   genPage,
-  isEmpty
+  isEmpty,
+  generateCode
 }

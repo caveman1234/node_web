@@ -7,7 +7,7 @@ var { wrapRes } = require("../utils/index");
 var testRouter = require("./test/index");
 var userRouter = require("./user/index");
 var placeRouter = require("./place/index");
-
+var noticeRouter = require("./notice/index");
 var projectName = "/node-web";
 
 var sessionMiddleWare = function(req,res,next) {
@@ -39,6 +39,7 @@ var handleMiddleWare = function(app) {
   app.use(projectName,userRouter);
   app.use(projectName,testRouter);
   app.use(projectName,placeRouter);
+  app.use(projectName,noticeRouter);
 }
 
 module.exports = handleMiddleWare;

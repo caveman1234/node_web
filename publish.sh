@@ -4,6 +4,7 @@ testServerDir=/root/node_web
 # 服务器地址
 targetServer=120.27.209.87
 # git pull
+echo "密码:Wjm123456"
 ls | grep -v node_modules | xargs tar -czf $tarName
 scp -P 22 $tarName root@${targetServer}:${testServerDir} 
 rm -rf ${tarName}

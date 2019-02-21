@@ -16,7 +16,7 @@ router.post('/user/create',async function(req, res) {
       realname:realname,
       telphone:telphone,
       studentNumber:studentNumber
-    });
+    }); 
     res.json(wrapRes(1,"成功",allUsers));
   }catch(e){
     res.json(wrapRes(2,e.message,null));
