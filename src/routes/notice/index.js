@@ -8,8 +8,8 @@ var router = express.Router();
 router.post('/notice/create',async function(req, res) {
     try{
     var {userId,username,realname,telphone,studentNumber} = req.session.userInfo;
-      var {noticeCode,noticeTitle,noticeContent} = req.body;
-    var allNotices = await noticeDb.createNotice({
+      var {noticeTitle,noticeContent} = req.body;
+    var allNotices = await noticeDb.create({
         noticeCode:generateCode(),
         userId:userId,
         username:username,
@@ -35,3 +35,5 @@ router.post('/notice/create',async function(req, res) {
 //       return;
 //     }
 // });
+
+module.exports = router;

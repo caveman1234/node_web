@@ -32,10 +32,10 @@ var generateCode = function(){
   var year = curDate.getFullYear();
   var month = curDate.getMonth() + 1;
   var day = curDate.getDate();
-  var code = fs.readFileSync("./code");
+  var code = fs.readFileSync(path.resolve(__dirname,"./code"));
   code = parseInt(code);
   code++;
-  fs.writeFileSync("./code",code);
+  fs.writeFileSync(path.resolve(__dirname,"./code"),code);
   return '' + year + month + day + code
 }
 

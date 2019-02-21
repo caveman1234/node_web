@@ -16,8 +16,8 @@ ls | grep -v dist.tar.gz | grep -v node_modules | xargs rm -rf
 tar -xzf dist.tar.gz
 rm -rf dist.tar.gz
 # npm install
-npm restart
-# npm start
+npm stop
+npm start
 eeooff
 echo "代码部署完毕"
 

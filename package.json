@@ -3,7 +3,8 @@
     "server-dev": "node index.js development",
     "server-pro": "node index.js production",
     "restart": "forever restart index.js",
-    "start": "forever start index.js"
+    "start": "forever start index.js",
+    "stop": "forever stop index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

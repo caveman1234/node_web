@@ -4,8 +4,7 @@ var {isEmpty} = require("../../utils/index");
 var Model ={
     noticeCode:{
         type: Sequelize.STRING,
-        defaultValue: null,
-        unique:true
+        defaultValue: null
     },
     noticeTitle:{
         type: Sequelize.STRING,
@@ -34,8 +33,7 @@ var Model ={
 }
 var validate = {
     validate:{
-      notNullOrEmpty() {        
-      }
+      
     }
 }
 module.exports = [
